@@ -9,8 +9,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var radius: CGFloat = 140
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            Color.black
+                .edgesIgnoringSafeArea(.all)
+            Circle()
+                .frame(width: 25)
+                .foregroundColor(.blue)
+            
+            ForEach(0..<6) { petal in
+                Circle()
+                    .frame(width: self.radius)
+                    .offset(CGSize(width: 0, height: -self.radius / 2 + 15))
+                    .rotationEffect(Angle(radians: .pi / 3 * Double(petal)))
+                    .foregroundColor(.blue)
+                    .opacity(0.4)
+            }
+            .onAppear {
+                withAnimation(Animation.easeInOut(duration: 3).repeatForever()) {
+                    self.radius = 15
+                }
+            }
+        }
     }
 }
 
