@@ -31,7 +31,7 @@ struct ContentView: View {
             .onAppear {
                 withAnimation(Animation.easeInOut(duration: 3).repeatForever()) {
                     self.radius = 15
-                    self.rotate += 1
+                    self.rotate -= 1
                 }
             }
         }
